@@ -8,6 +8,7 @@ import {
 } from './types';
 import { OpenAIProvider } from './providers/openai';
 import { AnthropicProvider } from './providers/anthropic';
+import { HuggingFaceProvider } from './providers/huggingface';
 import { ActionRegistry, createDefaultActionRegistry } from './actions';
 
 /**
@@ -36,9 +37,11 @@ export class HeySaladAI {
       case 'anthropic':
         providerInstance = new AnthropicProvider(config);
         break;
+      case 'huggingface':
+        providerInstance = new HuggingFaceProvider(config);
+        break;
       case 'bedrock':
       case 'vertex':
-      case 'huggingface':
       case 'deepseek':
       case 'mistral':
       case 'groq':

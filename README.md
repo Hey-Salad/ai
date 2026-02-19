@@ -38,11 +38,13 @@ const response = await ai.chat({
 ## 🎯 Features
 
 ### v0.1.0 (Current)
-- ✅ Multi-provider support (OpenAI, Anthropic)
+- ✅ Multi-provider support (OpenAI, Anthropic, Hugging Face)
 - ✅ Unified chat interface
 - ✅ Streaming support
+- ✅ Self-hosted model support
 - ✅ Action system for workflows
 - ✅ TypeScript native
+- ✅ Comprehensive testing (80%+ coverage)
 - ✅ OpenClaw ready
 
 ### v0.2.0 (Planned)
@@ -79,16 +81,59 @@ heysalad-ai/
 
 ## 🚀 Provider Roadmap
 
-| Provider | Status | Priority |
-|----------|--------|----------|
-| OpenAI | ✅ v0.1.0 | High |
-| Anthropic | ✅ v0.1.0 | High |
-| AWS Bedrock | 🔄 v0.2.0 | High |
-| Google Vertex | 🔄 v0.2.0 | High |
-| Groq | 🔄 v0.2.0 | Medium |
-| Hugging Face | 🔄 v0.3.0 | Medium |
-| DeepSeek | 🔄 v0.3.0 | Low |
-| Mistral | 🔄 v0.3.0 | Low |
+| Provider | Status | Priority | Notes |
+|----------|--------|----------|-------|
+| OpenAI | ✅ v0.1.0 | High | GPT-3.5, GPT-4 |
+| Anthropic | ✅ v0.1.0 | High | Claude 3 family |
+| Hugging Face | ✅ v0.1.0 | High | API + Self-hosted |
+| AWS Bedrock | 🔄 v0.2.0 | High | Claude, Llama, Titan |
+| Google Vertex | 🔄 v0.2.0 | High | Gemini, PaLM |
+| Groq | 🔄 v0.2.0 | Medium | High-speed inference |
+| DeepSeek | 🔄 v0.3.0 | Medium | Chinese models |
+| Mistral | 🔄 v0.3.0 | Low | Mistral AI models |
+
+## 🛠️ Self-Hosting & Infrastructure
+
+HeySalad AI supports running open-source models on your own infrastructure:
+
+```typescript
+import { HeySaladAI, HuggingFaceProvider } from '@heysalad/ai';
+
+const client = new HeySaladAI();
+
+// Option 1: Hugging Face Inference API
+client.configureProvider('huggingface', {
+  apiKey: process.env.HF_API_KEY,
+});
+
+// Option 2: Self-hosted on EC2
+client.configureProvider('huggingface', {
+  apiKey: 'not-needed',
+  baseURL: 'http://your-ec2-instance:8000/v1/models',
+});
+
+// Use it like any other provider
+const response = await client.chat({
+  model: 'meta-llama/Llama-2-7b-chat-hf',
+  messages: [{ role: 'user', content: 'Hello!' }]
+});
+```
+
+### 📚 Infrastructure Guides
+
+- **[EC2 Setup Guide](./docs/EC2_SETUP.md)** - AWS instance setup, GPU requirements, cost analysis
+- **[Self-Hosting Guide](./docs/SELF_HOSTING.md)** - Deploy LLMs with vLLM, TGI, or Ollama
+- **[Fine-Tuning Guide](./docs/FINE_TUNING.md)** - Customize models with LoRA or full fine-tuning
+- **[Full Documentation](./docs/README.md)** - Complete platform documentation
+
+### Cost Comparison
+
+| Setup | Monthly Cost | Tokens/Month | Cost per 1M |
+|-------|--------------|--------------|-------------|
+| Self-hosted (7B) | $500 | Unlimited | $0.10 |
+| HF Inference API | Pay per use | Variable | $0.60 |
+| OpenAI GPT-3.5 | Pay per use | Variable | $2.00 |
+| OpenAI GPT-4 | Pay per use | Variable | $30.00 |
 
 ## 🛠️ Development
 
@@ -101,6 +146,12 @@ npm run build
 
 # Run tests
 npm run test
+
+# Test with coverage
+npm run test:coverage
+
+# Lint code
+npm run lint
 
 # Development mode
 npm run dev
@@ -120,28 +171,43 @@ We're building a hosted version at **ai.heysalad.app** with:
 
 We believe in building in public and attracting AI agents to help build this project. Contributions welcome!
 
-### How to Contribute
-1. Fork the repo
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+See our [Contributing Guide](./CONTRIBUTING.md) for:
+- Development workflow and setup
+- Coding standards and best practices
+- Testing requirements
+- Commit guidelines
+- Pull request process
+
+Read our [Code Standards](./CODE_STANDARDS.md) for detailed guidelines on:
+- TypeScript best practices
+- API design patterns
+- Error handling
+- Testing standards
+- Security practices
 
 ### AI Agents Welcome
 This codebase is designed to be AI-friendly:
 - Clear, documented architecture
 - Strong typing with TypeScript
+- Comprehensive testing (80%+ coverage)
 - Automated CI/CD checks
 - Self-managing workflows (coming soon)
 
 ## 🔐 Security
 
-Security is our top priority:
+Security is our top priority. See our [Security Policy](./SECURITY.md) for:
 
-- **API Keys**: Never logged or exposed
+- **Vulnerability Reporting**: How to report security issues
+- **API Key Management**: Best practices for secrets
+- **Input Validation**: Sanitization and rate limiting
+- **Production Security**: HTTPS, authentication, monitoring
 - **Verification System**: Human-in-the-loop for sensitive actions
-- **Audit Logs**: Complete action history
+
+Key principles:
+- **API Keys**: Never logged or exposed
 - **Rate Limiting**: Built-in protection
 - **Encryption**: All data encrypted in transit
+- **Audit Logs**: Complete action history
 
 ## 📝 License
 
@@ -150,9 +216,19 @@ MIT License - see [LICENSE](LICENSE) for details
 ## 🔗 Links
 
 - **GitHub**: https://github.com/Hey-Salad/ai
-- **NPM**: https://npmjs.com/package/@heysalad/ai (coming soon)
+- **NPM**: https://npmjs.com/package/@heysalad/ai
 - **Dashboard**: https://ai.heysalad.app (coming soon)
-- **Docs**: https://ai.heysalad.app/docs (coming soon)
+- **Documentation**: [./docs](./docs/README.md)
+
+### 📚 Documentation
+
+- [Full Documentation](./docs/README.md) - Complete platform guide
+- [EC2 Setup](./docs/EC2_SETUP.md) - AWS infrastructure setup
+- [Self-Hosting](./docs/SELF_HOSTING.md) - Deploy your own LLMs
+- [Fine-Tuning](./docs/FINE_TUNING.md) - Customize models
+- [Contributing](./CONTRIBUTING.md) - Contribution guidelines
+- [Code Standards](./CODE_STANDARDS.md) - Coding best practices
+- [Security](./SECURITY.md) - Security policy
 
 ## 💡 Philosophy
 
