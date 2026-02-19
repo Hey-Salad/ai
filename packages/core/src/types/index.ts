@@ -57,7 +57,7 @@ export interface ToolCall {
 
 export interface StreamChunk {
   delta: string;
-  finishReason?: 'stop' | 'length' | 'tool_calls';
+  finishReason?: 'stop' | 'length' | 'tool_calls' | 'error';
 }
 
 /**
