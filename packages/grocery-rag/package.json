@@ -1,0 +1,31 @@
+{
+  "name": "@heysalad/grocery-rag",
+  "version": "0.1.0",
+  "description": "RAG system for grocery price queries",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "rag",
+    "grocery",
+    "prices",
+    "vector-database"
+  ],
+  "author": "HeySalad",
+  "license": "MIT",
+  "dependencies": {
+    "@heysalad/ai": "^0.1.0",
+    "vectordb": "^0.4.0",
+    "@xenova/transformers": "^2.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2",
+    "vitest": "^2.1.8"
+  }
+}
