@@ -1,0 +1,17 @@
+# HeySalad AI - robots.txt for agentic discovery
+# This site is designed to be easily discoverable by AI agents
+
+User-agent: *
+Allow: /
+Allow: /api/v1/
+Allow: /docs/
+
+# API Documentation
+Sitemap: https://ai.heysalad.app/sitemap.xml
+
+# AI Agent Hints
+# OpenAPI Spec: https://ai.heysalad.app/api/v1/openapi.json
+# GraphQL Schema: https://ai.heysalad.app/graphql/schema
+# API Documentation: https://ai.heysalad.app/docs
+
+Crawl-delay: 1

@@ -1,0 +1,33 @@
+# HeySalad AI - Cloudflare Workers Configuration
+# Documentation: https://developers.cloudflare.com/workers/configuration/
+
+name = "heysalad-ai-dev"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "./build/client"
+
+# Development environment (default)
+[env.dev]
+name = "heysalad-ai-dev"
+vars = { ENVIRONMENT = "development" }
+
+# Staging environment
+[env.staging]
+name = "heysalad-ai-staging"
+vars = { ENVIRONMENT = "staging" }
+routes = [
+  { pattern = "staging.ai.heysalad.app", zone_name = "heysalad.app" }
+]
+
+# Production environment
+[env.production]
+name = "heysalad-ai-production"
+vars = { ENVIRONMENT = "production" }
+routes = [
+  { pattern = "ai.heysalad.app", zone_name = "heysalad.app" }
+]
+
+# Secrets (set via: wrangler secret put SECRET_NAME)
+# - OPENAI_API_KEY
+# - ANTHROPIC_API_KEY
+# - DATABASE_URL
+# - SESSION_SECRET
