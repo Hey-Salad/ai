@@ -10,7 +10,10 @@
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "dev": "npm run dev --workspaces --if-present"
+    "dev": "npm run dev --workspaces --if-present",
+    "check-secrets": "node scripts/check-secrets.js",
+    "pre-push": "npm run check-secrets",
+    "prepare": "husky install || true"
   },
   "keywords": [
     "ai",

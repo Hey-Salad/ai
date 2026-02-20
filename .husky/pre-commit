@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run security check before commit
+echo "🔒 Running security check..."
+node scripts/check-secrets.js
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ Security check failed! Commit aborted."
+  echo "Please fix the issues above before committing."
+  exit 1
+fi
+
+echo "✅ Security check passed!"

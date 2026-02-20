@@ -1,0 +1,35 @@
+name: Security Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Run security check
+      run: node scripts/check-secrets.js
+      
+    - name: Security check passed
+      if: success()
+      run: echo "✅ No sensitive information detected"
+      
+    - name: Security check failed
+      if: failure()
+      run: |
+        echo "❌ Security check failed!"
+        echo "Sensitive information detected in the codebase."
+        echo "Please review the logs above and fix the issues."
+        exit 1

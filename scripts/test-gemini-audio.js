@@ -4,7 +4,7 @@
  * Test if Gemini 3 Flash supports audio/voice input
  */
 
-const API_KEY = 'AIzaSyCUPhzhJndc7SMR9HVnkrDImWUcm3mYAiA';
+const API_KEY = process.env.GEMINI_API_KEY || 'your_api_key_here';
 const MODEL = 'gemini-3-flash-preview';
 
 async function checkAudioSupport() {

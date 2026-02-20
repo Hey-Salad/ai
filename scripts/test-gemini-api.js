@@ -5,8 +5,8 @@
  * Tests the three Gemini 3 models with extended thinking capability
  */
 
-const API_KEY = 'AIzaSyCUPhzhJndc7SMR9HVnkrDImWUcm3mYAiA';
-const PROJECT_NAME = 'projects/882320138928';
+const API_KEY = process.env.GEMINI_API_KEY || 'your_api_key_here';
+const PROJECT_NAME = process.env.GEMINI_PROJECT || 'projects/your_project_id';
 
 const MODELS = {
   'gemini-3.1-pro-preview': 'Balanced performance with 95 thought tokens',
