@@ -5,6 +5,7 @@
 export type AIProvider =
   | 'openai'
   | 'anthropic'
+  | 'gemini'
   | 'bedrock'
   | 'vertex'
   | 'huggingface'
@@ -56,7 +57,10 @@ export interface ToolCall {
 }
 
 export interface StreamChunk {
-  delta: string;
+  id: string;
+  model: string;
+  content: string;
+  role: 'assistant';
   finishReason?: 'stop' | 'length' | 'tool_calls' | 'error';
 }
 

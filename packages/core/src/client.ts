@@ -9,6 +9,7 @@ import {
 import { OpenAIProvider } from './providers/openai';
 import { AnthropicProvider } from './providers/anthropic';
 import { HuggingFaceProvider } from './providers/huggingface';
+import { GeminiProvider } from './providers/gemini';
 import { ActionRegistry, createDefaultActionRegistry } from './actions';
 
 /**
@@ -39,6 +40,9 @@ export class HeySaladAI {
         break;
       case 'huggingface':
         providerInstance = new HuggingFaceProvider(config);
+        break;
+      case 'gemini':
+        providerInstance = new GeminiProvider(config);
         break;
       case 'bedrock':
       case 'vertex':
