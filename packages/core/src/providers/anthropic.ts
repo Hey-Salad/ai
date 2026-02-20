@@ -74,11 +74,17 @@ export class AnthropicProvider extends BaseProvider {
       for await (const event of stream) {
         if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
           yield {
-            delta: event.delta.text,
+            id: `anthropic-${Date.now()}`,
+            model: request.model,
+            content: event.delta.text,
+            role: 'assistant',
           };
         } else if (event.type === 'message_delta') {
           yield {
-            delta: '',
+            id: `anthropic-${Date.now()}`,
+            model: request.model,
+            content: '',
+            role: 'assistant',
             finishReason: this.mapFinishReason(event.delta.stop_reason || null),
           };
         }

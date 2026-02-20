@@ -67,7 +67,10 @@ export class OpenAIProvider extends BaseProvider {
         const finishReason = chunk.choices[0]?.finish_reason;
 
         yield {
-          delta,
+          id: chunk.id || `openai-${Date.now()}`,
+          model: chunk.model || request.model,
+          content: delta,
+          role: 'assistant',
           finishReason: finishReason ? this.mapFinishReason(finishReason) : undefined,
         };
       }

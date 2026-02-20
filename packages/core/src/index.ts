@@ -7,6 +7,7 @@ export { HeySaladAI, createClient } from './client';
 export { ActionRegistry, createDefaultActionRegistry } from './actions';
 export * from './types';
 export * from './providers';
+export * from './cheri-ml';
 
 // Re-export for convenience
 export type {

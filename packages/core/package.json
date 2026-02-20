@@ -18,6 +18,8 @@
     "ai",
     "openai",
     "anthropic",
+    "gemini",
+    "code-generation",
     "bedrock",
     "vertex",
     "automation"

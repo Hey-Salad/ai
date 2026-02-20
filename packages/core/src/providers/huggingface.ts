@@ -128,7 +128,10 @@ export class HuggingFaceProvider extends BaseProvider {
 
             if (delta) {
               yield {
-                delta,
+                id: `hf-${Date.now()}`,
+                model: request.model,
+                content: delta,
+                role: 'assistant',
                 finishReason: data.finish_reason ? 'stop' : undefined,
               };
             }

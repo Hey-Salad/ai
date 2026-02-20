@@ -59,6 +59,7 @@ export class HeySaladRouter {
   private costs: Record<AIProvider, number> = {
     'openai': 2.0,        // GPT-3.5
     'anthropic': 15.0,    // Claude 3
+    'gemini': 0.5,        // Gemini Flash
     'huggingface': 0.1,   // Self-hosted HeySalad-7B
     'bedrock': 3.0,
     'vertex': 3.0,
@@ -71,6 +72,7 @@ export class HeySaladRouter {
   private latencies: Record<AIProvider, number> = {
     'openai': 500,
     'anthropic': 800,
+    'gemini': 400,       // Gemini Flash is fast
     'huggingface': 200,  // Self-hosted is faster!
     'bedrock': 600,
     'vertex': 700,
