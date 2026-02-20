@@ -18,12 +18,13 @@ export default defineConfig({
     resolve: {
       conditions: ['workerd', 'worker', 'browser'],
     },
+    external: [],
   },
   resolve: {
     mainFields: ['browser', 'module', 'main'],
   },
   build: {
     minify: true,
-    copyPublicDir: true,
+    target: 'esnext',
   },
 });
