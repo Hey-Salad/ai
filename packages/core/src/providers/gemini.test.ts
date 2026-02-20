@@ -152,11 +152,11 @@ describe('GeminiProvider', () => {
     it('should return list of supported models', async () => {
       const models = await provider.listModels();
 
-      expect(models).toContain('gemini-3-flash-preview');
-      expect(models).toContain('gemini-3.1-pro-preview');
-      expect(models).toContain('gemini-3-pro-preview');
+      expect(models).toContain('gemini-2.0-flash');
       expect(models).toContain('gemini-2.5-flash');
       expect(models).toContain('gemini-2.5-pro');
+      expect(models).toContain('gemini-1.5-pro');
+      expect(models).toContain('gemini-1.5-flash');
     });
   });
 

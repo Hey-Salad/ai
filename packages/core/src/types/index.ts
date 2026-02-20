@@ -34,6 +34,7 @@ export interface ChatCompletionResponse {
   id: string;
   model: string;
   content: string;
+  role?: 'assistant';
   finishReason: 'stop' | 'length' | 'tool_calls' | 'error';
   usage?: {
     promptTokens: number;

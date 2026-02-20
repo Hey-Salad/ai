@@ -27,9 +27,21 @@ describe('HuggingFaceProvider', () => {
 
   describe('chat', () => {
     it('should send chat request to Hugging Face API', async () => {
-      const mockResponse = [
-        { generated_text: 'This is a test response' },
-      ];
+      const mockResponse = {
+        id: 'test-id',
+        model: 'meta-llama/Llama-2-7b-chat-hf',
+        choices: [
+          {
+            message: { content: 'This is a test response' },
+            finish_reason: 'stop',
+          },
+        ],
+        usage: {
+          prompt_tokens: 5,
+          completion_tokens: 10,
+          total_tokens: 15,
+        },
+      };
 
       global.fetch = vi.fn().mockResolvedValue({
         ok: true,
@@ -123,10 +135,12 @@ describe('HuggingFaceProvider', () => {
   });
 
   describe('message formatting', () => {
-    it('should format messages in ChatML format', async () => {
+    it('should send messages in OpenAI-compatible format', async () => {
       global.fetch = vi.fn().mockResolvedValue({
         ok: true,
-        json: async () => [{ generated_text: 'response' }],
+        json: async () => ({
+          choices: [{ message: { content: 'response' }, finish_reason: 'stop' }],
+        }),
       });
 
       const request: ChatCompletionRequest = {
@@ -145,9 +159,8 @@ describe('HuggingFaceProvider', () => {
         (global.fetch as any).mock.calls[0][1].body
       );
 
-      expect(callBody.inputs).toContain('<|im_start|>system');
-      expect(callBody.inputs).toContain('<|im_start|>user');
-      expect(callBody.inputs).toContain('<|im_start|>assistant');
+      expect(callBody.messages).toEqual(request.messages);
+      expect(callBody.model).toBe('test-model');
     });
   });
 });

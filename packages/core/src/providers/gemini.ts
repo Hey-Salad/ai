@@ -82,6 +82,7 @@ export class GeminiProvider extends BaseProvider {
         id: `gemini-${Date.now()}`,
         model,
         content: candidate.content.parts[0].text,
+        role: 'assistant',
         finishReason: (candidate.finishReason as 'stop' | 'length' | 'tool_calls' | 'error') || 'stop',
         usage: data.usageMetadata ? {
           promptTokens: data.usageMetadata.promptTokenCount,

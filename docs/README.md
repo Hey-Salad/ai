@@ -1,125 +1,118 @@
 # HeySalad AI Documentation
 
-Comprehensive documentation for the HeySalad AI platform.
+Welcome to the HeySalad AI documentation! This directory contains comprehensive guides, tutorials, and reference materials for the HeySalad AI platform.
 
-## 📚 Documentation Structure
+## 📚 Quick Navigation
 
 ### 🚀 Getting Started
-Start here if you're new to HeySalad AI.
+- [Quick Start Guide](./getting-started/QUICK_START.md) - Get up and running in minutes
+- [Get HuggingFace Token](./getting-started/GET_HF_TOKEN.md) - Setup guide for HF integration
 
-- [Quick Start Guide](./getting-started/QUICK_START.md) - Get up and running quickly
-- [Get HuggingFace Token](./getting-started/GET_HF_TOKEN.md) - Setup HuggingFace API access
-
-### 🏗️ Architecture
-Learn about the system design and coding standards.
-
-- [System Architecture](./architecture/ARCHITECTURE.md) - Overall system design
+### 🏗️ Architecture & Design
+- [System Architecture](./architecture/ARCHITECTURE.md) - Overall system design and patterns
 - [Code Standards](./architecture/CODE_STANDARDS.md) - Coding guidelines and best practices
+- [Project Structure](./PROJECT_STRUCTURE.md) - Repository organization
 
-### 🔌 Providers
-Documentation for AI provider integrations.
+### 🤖 CheriML - AI Code Generation
+- [CheriML API Endpoints](./cheriml/CHERIML_API_ENDPOINTS.md) - Complete API reference
+- [CheriML Test Report](./cheriml/CHERIML_TEST_REPORT.md) - Testing documentation
+- [CheriML Success Guide](./cheriml/CHERIML_API_SUCCESS.md) - Implementation guide
+- [Endpoints Ready](./cheriml/CHERIML_ENDPOINTS_READY.md) - Production readiness
 
-- [Gemini 3 Implementation](./providers/GEMINI_3_IMPLEMENTATION.md) - Google Gemini 3 integration guide
-- [Gemini Models Documentation](./providers/GEMINI_MODELS_DOCUMENTATION.md) - Detailed Gemini model specs
-
-### 🖥️ Infrastructure
-Setup and manage infrastructure for self-hosting.
-
-- [EC2 Setup Guide](./infrastructure/EC2_SETUP.md) - AWS EC2 instance setup
-- [Self-Hosting Guide](./infrastructure/SELF_HOSTING.md) - Deploy your own LLMs
-- [AWS Limit Issues](./infrastructure/AWS_LIMIT_ISSUE.md) - AWS quota troubleshooting
-
-### 🤖 Models
-Model training and fine-tuning documentation.
-
-- [Fine-Tuning Guide](./models/FINE_TUNING.md) - Customize models with LoRA or full fine-tuning
-- [HeySalad Model](./models/HEYSALAD_MODEL.md) - Custom HeySalad model documentation
+### 🌐 API Documentation
+- [API Usage Guide](./api/API_USAGE_GUIDE.md) - How to use the HeySalad AI API
 
 ### 🚢 Deployment
-Production deployment guides and plans.
+- [Cloudflare Deployment](./deployment/CLOUDFLARE_DEPLOYMENT.md) - Deploy to Cloudflare Pages
+- [Deployment Quick Start](./deployment/DEPLOYMENT_QUICKSTART.md) - Fast deployment guide
+- [Deployment Summary](./deployment/DEPLOYMENT_SUMMARY.md) - Complete deployment overview
+- [Secret Setup](./deployment/CLOUDFLARE_SECRET_SETUP.md) - Configure API keys and secrets
+- [Deployment Success](./deployment/DEPLOYMENT_SUCCESS.md) - Post-deployment verification
+- [Deploy Now Guide](./deployment/DEPLOY_NOW.md) - Step-by-step deployment
+- [Final Status](./deployment/FINAL_DEPLOYMENT_STATUS.md) - Latest deployment status
 
-- [Deployment Master Plan](./deployment/DEPLOYMENT_MASTER_PLAN.md) - Complete deployment strategy
-- [Deployment Success](./deployment/DEPLOYMENT_SUCCESS.md) - Deployment notes and learnings
+### 🏢 Infrastructure
+- [Self Hosting Guide](./infrastructure/SELF_HOSTING.md) - Host your own instance
+- [EC2 Setup](./infrastructure/EC2_SETUP.md) - AWS EC2 deployment guide
+- [AWS Limits](./infrastructure/AWS_LIMIT_ISSUE.md) - AWS quota and limits
+
+### 🧠 AI Models
+- [HeySalad Model](./models/HEYSALAD_MODEL.md) - Custom model information
+- [Fine Tuning Guide](./models/FINE_TUNING.md) - How to fine-tune models
+- [Gemini 3 Implementation](./providers/GEMINI_3_IMPLEMENTATION.md) - Gemini 3 integration
+- [Gemini Models](./providers/GEMINI_MODELS_DOCUMENTATION.md) - Complete Gemini reference
+
+### 🔒 Security
+- [Security Setup](./SECURITY_SETUP.md) - Security configuration guide
+- [Security Audit](./SECURITY_AUDIT_COMPLETE.md) - Security audit results
+- [Security Quick Start](./SECURITY_QUICK_START.md) - Essential security steps
+
+### 🧪 Testing
+- [Test Summary](./testing/TEST_SUMMARY.md) - Test results and coverage
+- [Production Test Report](./testing/PRODUCTION_TEST_REPORT.md) - Production API tests
+- [Final Test Summary](./testing/FINAL_TEST_SUMMARY.md) - Complete test overview
 
 ### 📊 Project Status
-Track project progress and completed work.
-
-- [Current Status](./project-status/CURRENT_STATUS.md) - Current project state
-- [Where We Are](./project-status/WHERE_WE_ARE.md) - Progress overview
-- [Actual Status](./project-status/ACTUAL_STATUS.md) - Detailed status report
-- [Completed Tasks](./project-status/COMPLETED_TASKS.md) - Finished work
-- [Ready to Use](./project-status/READY_TO_USE.md) - Production-ready features
-
-## 🗂️ Folder Structure
-
-```
-docs/
-├── README.md                    # This file
-├── getting-started/             # New user guides
-│   ├── QUICK_START.md
-│   └── GET_HF_TOKEN.md
-├── architecture/                # System design
-│   ├── ARCHITECTURE.md
-│   └── CODE_STANDARDS.md
-├── providers/                   # AI provider docs
-│   ├── GEMINI_3_IMPLEMENTATION.md
-│   └── GEMINI_MODELS_DOCUMENTATION.md
-├── infrastructure/              # Self-hosting & AWS
-│   ├── EC2_SETUP.md
-│   ├── SELF_HOSTING.md
-│   └── AWS_LIMIT_ISSUE.md
-├── models/                      # Model training
-│   ├── FINE_TUNING.md
-│   └── HEYSALAD_MODEL.md
-├── deployment/                  # Production deployment
-│   ├── DEPLOYMENT_MASTER_PLAN.md
-│   └── DEPLOYMENT_SUCCESS.md
-└── project-status/              # Progress tracking
-    ├── CURRENT_STATUS.md
-    ├── WHERE_WE_ARE.md
-    ├── ACTUAL_STATUS.md
-    ├── COMPLETED_TASKS.md
-    └── READY_TO_USE.md
-```
-
-## 🎯 Quick Links
-
-### For New Users
-1. [Quick Start](./getting-started/QUICK_START.md)
-2. [Architecture Overview](./architecture/ARCHITECTURE.md)
-3. [Code Standards](./architecture/CODE_STANDARDS.md)
-
-### For Contributors
-1. [Code Standards](./architecture/CODE_STANDARDS.md)
-2. [Architecture](./architecture/ARCHITECTURE.md)
-3. [Current Status](./project-status/CURRENT_STATUS.md)
-
-### For Self-Hosting
-1. [EC2 Setup](./infrastructure/EC2_SETUP.md)
-2. [Self-Hosting Guide](./infrastructure/SELF_HOSTING.md)
-3. [Fine-Tuning](./models/FINE_TUNING.md)
-
-### For Deployment
-1. [Deployment Master Plan](./deployment/DEPLOYMENT_MASTER_PLAN.md)
-2. [Infrastructure Setup](./infrastructure/EC2_SETUP.md)
-3. [Deployment Success Notes](./deployment/DEPLOYMENT_SUCCESS.md)
-
-## 📝 Contributing to Docs
-
-When adding new documentation:
-
-1. Place it in the appropriate subfolder
-2. Update this README with a link
-3. Follow the existing naming conventions
-4. Use clear, descriptive titles
-
-## 🔗 External Links
-
-- [Main README](../README.md)
-- [Contributing Guide](../CONTRIBUTING.md)
-- [Security Policy](../SECURITY.md)
-- [Scripts Documentation](../scripts/README.md)
+- [Current Status](./project-status/CURRENT_STATUS.md) - Latest project updates
+- [Where We Are](./project-status/WHERE_WE_ARE.md) - Project roadmap
+- [Completed Tasks](./project-status/COMPLETED_TASKS.md) - What's been accomplished
+- [Ready to Use](./project-status/READY_TO_USE.md) - Production readiness checklist
+- [Repository Review](./status/REPOSITORY_REVIEW.md) - Code review and analysis
 
 ---
 
-**Last Updated:** 2026-02-20
+## 🎯 Common Tasks
+
+### First Time Setup
+1. Read [Quick Start Guide](./getting-started/QUICK_START.md)
+2. Follow [Security Setup](./SECURITY_SETUP.md)
+3. Review [Code Standards](./architecture/CODE_STANDARDS.md)
+
+### Deploying to Production
+1. Check [Deployment Quick Start](./deployment/DEPLOYMENT_QUICKSTART.md)
+2. Configure [Secrets](./deployment/CLOUDFLARE_SECRET_SETUP.md)
+3. Follow [Cloudflare Deployment](./deployment/CLOUDFLARE_DEPLOYMENT.md)
+4. Verify with [Production Tests](./testing/PRODUCTION_TEST_REPORT.md)
+
+### Using CheriML API
+1. Review [CheriML API Endpoints](./cheriml/CHERIML_API_ENDPOINTS.md)
+2. Check [API Usage Guide](./api/API_USAGE_GUIDE.md)
+3. See [Test Report](./cheriml/CHERIML_TEST_REPORT.md) for examples
+
+### Contributing Code
+1. Read [Code Standards](./architecture/CODE_STANDARDS.md)
+2. Review [Architecture](./architecture/ARCHITECTURE.md)
+3. See [CONTRIBUTING.md](../CONTRIBUTING.md) in root directory
+
+---
+
+## 📖 Documentation Index
+
+All documentation is organized into logical categories:
+
+- **api/** - API usage and reference
+- **architecture/** - System design and code standards
+- **cheriml/** - CheriML code generation documentation
+- **deployment/** - Deployment guides and configurations
+- **getting-started/** - Quick start and setup guides
+- **infrastructure/** - Self-hosting and infrastructure
+- **models/** - AI model documentation
+- **project-status/** - Project status and roadmap
+- **providers/** - AI provider integrations
+- **testing/** - Test reports and coverage
+- **status/** - Repository reviews and audits
+
+---
+
+## 🆘 Need Help?
+
+- **Quick Start**: [Getting Started Guide](./getting-started/QUICK_START.md)
+- **API Reference**: [CheriML Endpoints](./cheriml/CHERIML_API_ENDPOINTS.md)
+- **Deployment**: [Deployment Quick Start](./deployment/DEPLOYMENT_QUICKSTART.md)
+- **Security**: [Security Setup](./SECURITY_SETUP.md)
+- **Contributing**: [CONTRIBUTING.md](../CONTRIBUTING.md)
+
+---
+
+**Last Updated**: February 20, 2026  
+**Documentation Version**: 1.0
