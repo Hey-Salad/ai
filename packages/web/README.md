@@ -8,12 +8,13 @@ HeySalad AI Dashboard and API - Hosted at ai.heysalad.app
 ```bash
 npm run dev
 # Local development server at http://localhost:5173
+# Deploys to ai-dev.heysalad.app
 ```
 
 ### Staging
 ```bash
 npm run deploy:staging
-# Deploys to staging.ai.heysalad.app
+# Deploys to ai.staging.heysalad.app
 ```
 
 ### Production

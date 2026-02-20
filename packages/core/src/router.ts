@@ -7,12 +7,12 @@
  * - Performance requirements
  */
 
+import { HeySaladAI } from './client';
 import {
-  HeySaladAI,
   ChatCompletionRequest,
   ChatCompletionResponse,
   AIProvider
-} from './client';
+} from './types';
 
 export interface RouterConfig {
   // Primary providers (in order of preference)
@@ -275,7 +275,7 @@ export class HeySaladRouter {
    */
   private isGroceryQuery(request: ChatCompletionRequest): boolean {
     const text = request.messages
-      .map(m => m.content.toLowerCase())
+      .map((m: { content: string }) => m.content.toLowerCase())
       .join(' ');
 
     const groceryKeywords = [

@@ -1,33 +1,41 @@
-# HeySalad AI - Cloudflare Workers Configuration
-# Documentation: https://developers.cloudflare.com/workers/configuration/
+# HeySalad AI - Cloudflare Pages Configuration
+# Documentation: https://developers.cloudflare.com/pages/
 
-name = "heysalad-ai-dev"
+name = "heysalad-ai"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "./build/client"
 
-# Development environment (default)
-[env.dev]
-name = "heysalad-ai-dev"
-vars = { ENVIRONMENT = "development" }
+# KV Namespaces
+[[kv_namespaces]]
+binding = "API_KEYS"
+id = "51827e9cc0c346b4986bc837cd44736b"
+preview_id = "55751c1f76984525a85247c0b8e46d25"
 
-# Staging environment
-[env.staging]
-name = "heysalad-ai-staging"
-vars = { ENVIRONMENT = "staging" }
-routes = [
-  { pattern = "staging.ai.heysalad.app", zone_name = "heysalad.app" }
-]
+# Preview environment (for development/staging)
+# Accessible via: ai-dev.heysalad.app, ai.staging.heysalad.app
+[env.preview]
+name = "heysalad-ai-preview"
+vars = { ENVIRONMENT = "preview" }
+
+[[env.preview.kv_namespaces]]
+binding = "API_KEYS"
+id = "55751c1f76984525a85247c0b8e46d25"
 
 # Production environment
+# Accessible via: ai.heysalad.app
 [env.production]
 name = "heysalad-ai-production"
 vars = { ENVIRONMENT = "production" }
-routes = [
-  { pattern = "ai.heysalad.app", zone_name = "heysalad.app" }
-]
 
-# Secrets (set via: wrangler secret put SECRET_NAME)
+[[env.production.kv_namespaces]]
+binding = "API_KEYS"
+id = "51827e9cc0c346b4986bc837cd44736b"
+
+# Secrets (set via: wrangler secret put SECRET_NAME --env production)
 # - OPENAI_API_KEY
 # - ANTHROPIC_API_KEY
+# - HUGGINGFACE_API_KEY
+# - GEMINI_API_KEY
 # - DATABASE_URL
-# - SESSION_SECRET
+# - SESSION_SECRET    (random string, e.g. openssl rand -hex 32)
+# - DASHBOARD_PASSWORD (password to log in to /dashboard)

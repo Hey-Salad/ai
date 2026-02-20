@@ -7,11 +7,10 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && npm run build:worker",
-    "build:worker": "vite build --ssr",
+    "build:worker": "vite build --ssr && node build-worker.mjs",
     "preview": "wrangler pages dev",
     "deploy": "npm run build && wrangler pages deploy",
-    "deploy:dev": "npm run build && wrangler pages deploy --branch=dev",
-    "deploy:staging": "npm run build && wrangler pages deploy --branch=staging",
+    "deploy:preview": "npm run build && wrangler pages deploy --branch=preview",
     "deploy:prod": "npm run build && wrangler pages deploy --branch=production",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -45,7 +44,7 @@
     "jsdom": "^25.0.1",
     "typescript": "^5.7.2",
     "vite": "^6.0.11",
-    "vite-tsconfig-paths": "^5.2.0",
+    "vite-tsconfig-paths": "^5.1.3",
     "vitest": "^2.1.8",
     "wrangler": "^4.0.0"
   },

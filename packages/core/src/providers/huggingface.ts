@@ -20,21 +20,19 @@ export class HuggingFaceProvider extends BaseProvider {
   constructor(config: ProviderConfig) {
     super(config);
     this.apiKey = config.apiKey;
-    // Default to Hugging Face Inference API, but can be overridden for self-hosted
-    this.baseURL = config.baseURL || 'https://api-inference.huggingface.co/models';
+    // Default to Hugging Face Router API (OpenAI-compatible), but can be overridden for self-hosted
+    this.baseURL = config.baseURL || 'https://router.huggingface.co/v1';
   }
 
   async chat(request: ChatCompletionRequest): Promise<ChatCompletionResponse> {
     try {
-      const endpoint = `${this.baseURL}/${request.model}`;
+      const endpoint = `${this.baseURL}/chat/completions`;
 
       const payload = {
-        inputs: this.formatMessages(request.messages),
-        parameters: {
-          temperature: request.temperature ?? 0.7,
-          max_new_tokens: request.maxTokens ?? 512,
-          return_full_text: false,
-        },
+        model: request.model,
+        messages: request.messages,
+        temperature: request.temperature ?? 0.7,
+        max_tokens: request.maxTokens ?? 512,
       };
 
       const response = await fetch(endpoint, {
@@ -51,18 +49,22 @@ export class HuggingFaceProvider extends BaseProvider {
         throw new Error(`Hugging Face API error: ${response.status} - ${error}`);
       }
 
-      const data = await response.json();
+      const data = await response.json() as any;
 
-      // Handle different response formats from HF
-      const content = Array.isArray(data)
-        ? data[0]?.generated_text || data[0]?.text || ''
-        : data.generated_text || data.text || '';
+      // OpenAI-compatible response format
+      const content = data.choices?.[0]?.message?.content || '';
+      const usage = data.usage;
 
       return {
-        id: `hf-${Date.now()}`,
-        model: request.model,
+        id: data.id || `hf-${Date.now()}`,
+        model: data.model || request.model,
         content: content.trim(),
-        finishReason: 'stop',
+        finishReason: data.choices?.[0]?.finish_reason || 'stop',
+        usage: usage ? {
+          promptTokens: usage.prompt_tokens,
+          completionTokens: usage.completion_tokens,
+          totalTokens: usage.total_tokens,
+        } : undefined,
         metadata: request.metadata,
       };
     } catch (error) {
