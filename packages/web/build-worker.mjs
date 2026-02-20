@@ -9,7 +9,7 @@ await build({
   bundle: true,
   outfile: join(__dirname, 'build/client/_worker.js'),
   format: 'esm',
-  platform: 'browser',
+  platform: 'neutral',
   conditions: ['workerd', 'worker', 'browser', 'module'],
   define: {
     'process.env.NODE_ENV': '"production"',
