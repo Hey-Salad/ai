@@ -60,16 +60,24 @@ export default function LoginPage() {
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <div
             style={{
-              fontSize: '2rem',
+              fontSize: '2.5rem',
+              marginBottom: '1rem',
+            }}
+          >
+            🥗
+          </div>
+          <h1
+            style={{
+              fontSize: '1.75rem',
               fontWeight: '800',
-              background: 'linear-gradient(135deg, #6ee7b7, #3b82f6)',
+              background: 'linear-gradient(135deg, #ED4C4C, #FF6B6B)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              marginBottom: '0.5rem',
+              margin: '0 0 0.5rem',
             }}
           >
             HeySalad AI
-          </div>
+          </h1>
           <p style={{ color: '#8888aa', fontSize: '0.9rem', margin: 0 }}>
             Sign in to your dashboard
           </p>

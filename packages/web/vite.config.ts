@@ -24,5 +24,6 @@ export default defineConfig({
   },
   build: {
     minify: true,
+    copyPublicDir: true,
   },
 });

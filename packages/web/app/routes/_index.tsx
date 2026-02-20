@@ -73,17 +73,20 @@ export default function Index() {
           height: '60px',
         }}
       >
-        <span
-          style={{
-            fontSize: '1.2rem',
-            fontWeight: '800',
-            background: 'linear-gradient(135deg, #6ee7b7, #3b82f6)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          HeySalad AI
-        </span>
+        <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <span style={{ fontSize: '1.5rem' }}>🥗</span>
+          <span
+            style={{
+              fontSize: '1.1rem',
+              fontWeight: '800',
+              background: 'linear-gradient(135deg, #ED4C4C, #FF6B6B)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            HeySalad
+          </span>
+        </a>
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
           <a href="/api/v1" style={{ color: '#8888aa', textDecoration: 'none', fontSize: '0.9rem' }}>
             API Docs

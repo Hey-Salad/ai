@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build --ssr",
+    "build": "vite build --ssr && npm run copy:assets",
+    "copy:assets": "cp public/*.svg build/client/ 2>/dev/null; cp public/*.png build/client/ 2>/dev/null; true",
     "preview": "wrangler pages dev",
     "deploy": "npm run build && wrangler pages deploy build/client",
     "deploy:preview": "npm run build && wrangler pages deploy build/client --branch preview",

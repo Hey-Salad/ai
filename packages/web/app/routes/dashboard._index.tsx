@@ -102,15 +102,24 @@ export default function DashboardPage() {
           <a
             href="/"
             style={{
-              fontSize: '1.1rem',
-              fontWeight: '800',
-              background: 'linear-gradient(135deg, #6ee7b7, #3b82f6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
               textDecoration: 'none',
             }}
           >
-            HeySalad AI
+            <span style={{ fontSize: '1.25rem' }}>🥗</span>
+            <span
+              style={{
+                fontSize: '0.95rem',
+                fontWeight: '800',
+                background: 'linear-gradient(135deg, #ED4C4C, #FF6B6B)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              HeySalad
+            </span>
           </a>
           <div style={{ fontSize: '0.7rem', color: '#555566', marginTop: '0.25rem' }}>
             Dashboard
