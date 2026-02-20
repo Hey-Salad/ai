@@ -62,21 +62,31 @@ const response = await ai.chat({
 - 🎯 Self-managing AI agents
 - 🎯 CI/CD automation
 
-## 🏗️ Architecture
+## 🏗️ Repository Structure
 
 ```
 heysalad-ai/
 ├── packages/
-│   └── core/                # @heysalad/ai NPM package
-│       ├── src/
-│       │   ├── providers/   # AI provider implementations
-│       │   ├── actions/     # Workflow action system
-│       │   ├── types/       # TypeScript definitions
-│       │   └── client.ts    # Main client
-├── apps/                    # Coming soon: Dashboard & API
-├── .github/
-│   └── workflows/           # CI/CD automation
-└── docs/                    # Coming soon: Documentation
+│   ├── core/                # @heysalad/ai NPM package
+│   │   ├── src/
+│   │   │   ├── providers/   # AI provider implementations
+│   │   │   ├── actions/     # Workflow action system
+│   │   │   ├── types/       # TypeScript definitions
+│   │   │   └── client.ts    # Main client
+│   ├── web/                 # Web dashboard (Remix + Cloudflare)
+│   └── grocery-rag/         # RAG system for grocery data
+├── scripts/                 # Deployment & test scripts
+│   ├── test-gemini-*.js     # Gemini API tests
+│   ├── deploy-*.sh          # Deployment automation
+│   └── quick-test.js        # Platform tests
+├── docs/                    # Documentation
+│   ├── EC2_SETUP.md         # AWS infrastructure
+│   ├── SELF_HOSTING.md      # Self-hosting guide
+│   ├── GEMINI_*.md          # Gemini integration docs
+│   └── *.md                 # Additional documentation
+├── model-training/          # Model training scripts
+├── examples/                # Usage examples
+└── .github/workflows/       # CI/CD automation
 ```
 
 ## 🚀 Provider Roadmap
@@ -223,11 +233,14 @@ MIT License - see [LICENSE](LICENSE) for details
 ### 📚 Documentation
 
 - [Full Documentation](./docs/README.md) - Complete platform guide
+- [Quick Start](./docs/QUICK_START.md) - Get started quickly
+- [Architecture](./docs/ARCHITECTURE.md) - System architecture
 - [EC2 Setup](./docs/EC2_SETUP.md) - AWS infrastructure setup
 - [Self-Hosting](./docs/SELF_HOSTING.md) - Deploy your own LLMs
 - [Fine-Tuning](./docs/FINE_TUNING.md) - Customize models
+- [Gemini Integration](./docs/GEMINI_3_IMPLEMENTATION.md) - Google Gemini 3 support
 - [Contributing](./CONTRIBUTING.md) - Contribution guidelines
-- [Code Standards](./CODE_STANDARDS.md) - Coding best practices
+- [Code Standards](./docs/CODE_STANDARDS.md) - Coding best practices
 - [Security](./SECURITY.md) - Security policy
 
 ## 💡 Philosophy

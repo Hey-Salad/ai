@@ -1,6 +1,6 @@
-# HeySalad AI Deployment Scripts
+# HeySalad AI Scripts
 
-Automated scripts for deploying the complete HeySalad AI platform.
+This directory contains deployment scripts, test utilities, and automation tools for the HeySalad AI platform.
 
 ## 🚀 Quick Start
 
@@ -47,7 +47,35 @@ python3 push_to_hub.py --model /path/to/model
 ./scripts/validate-deployment.sh
 ```
 
-## 📋 Scripts Overview
+## 🧪 Test Scripts
+
+### Gemini API Tests
+- `test-gemini-api.js` - Test all Gemini 3 models (3.1-pro, 3-flash, 3-pro)
+- `test-gemini-flash.js` - Focused tests for Gemini Flash model
+- `test-gemini-audio.js` - Test audio/multimodal capabilities
+- `test-gemini-coding.js` - Test code completion and generation capabilities
+
+### Platform Tests
+- `quick-test.js` - Quick platform functionality test
+
+**Usage:**
+```bash
+# Test Gemini coding capabilities
+node scripts/test-gemini-coding.js
+
+# Test all Gemini models
+node scripts/test-gemini-api.js
+
+# Quick platform test
+node scripts/quick-test.js
+```
+
+## 🛠️ Setup Scripts
+
+- `GET_STARTED.sh` - Quick start setup script
+- `STATUS_CHECK.sh` - Check system status and health
+
+## 📋 Deployment Scripts Overview
 
 ### launch-gpu-instance.sh
 
