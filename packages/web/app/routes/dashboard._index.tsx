@@ -4,6 +4,7 @@ import { Form, useActionData, useLoaderData, useNavigation } from '@remix-run/re
 import { useState } from 'react';
 import { requireAuth } from '~/utils/auth.server';
 import { createKey, listKeys, revokeKey, type ApiKeyPublic } from '~/utils/keys.server';
+import { ThemeToggle } from '~/components/ThemeToggle';
 
 interface Env {
   API_KEYS: KVNamespace;
@@ -70,32 +71,13 @@ export default function DashboardPage() {
   }
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: '#0a0a0f',
-        display: 'flex',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
-        color: '#e0e0f0',
-      }}
-    >
+    <div style={{ minHeight: '100vh', display: 'flex' }}>
       {/* Sidebar */}
-      <aside
-        style={{
-          width: '220px',
-          minHeight: '100vh',
-          background: '#111118',
-          borderRight: '1px solid #222230',
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '1.5rem 0',
-          flexShrink: 0,
-        }}
-      >
+      <aside className="sidebar">
         <div
           style={{
             padding: '0 1.25rem 1.5rem',
-            borderBottom: '1px solid #222230',
+            borderBottom: '1px solid var(--border)',
             marginBottom: '1rem',
           }}
         >
@@ -109,19 +91,11 @@ export default function DashboardPage() {
             }}
           >
             <span style={{ fontSize: '1.25rem' }}>🥗</span>
-            <span
-              style={{
-                fontSize: '0.95rem',
-                fontWeight: '800',
-                background: 'linear-gradient(135deg, #ED4C4C, #FF6B6B)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
+            <span className="brand-gradient" style={{ fontSize: '0.95rem', fontWeight: '800' }}>
               HeySalad
             </span>
           </a>
-          <div style={{ fontSize: '0.7rem', color: '#555566', marginTop: '0.25rem' }}>
+          <div style={{ fontSize: '0.7rem', color: 'var(--text-tertiary)', marginTop: '0.25rem' }}>
             Dashboard
           </div>
         </div>
@@ -136,31 +110,22 @@ export default function DashboardPage() {
             <a
               key={label}
               href={href}
-              style={{
-                display: 'block',
-                padding: '0.6rem 0.75rem',
-                borderRadius: '6px',
-                color: active ? '#6ee7b7' : '#8888aa',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                fontWeight: active ? '600' : '400',
-                background: active ? 'rgba(110,231,183,0.08)' : 'transparent',
-                marginBottom: '0.25rem',
-              }}
+              className={`sidebar-link ${active ? 'active' : ''}`}
             >
               {label}
             </a>
           ))}
         </nav>
 
-        <div style={{ padding: '1rem 1.5rem', borderTop: '1px solid #222230' }}>
+        <div style={{ padding: '1rem 1.5rem', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <ThemeToggle />
           <Form method="post" action="/auth/logout">
             <button
               type="submit"
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#555566',
+                color: 'var(--text-tertiary)',
                 cursor: 'pointer',
                 fontSize: '0.85rem',
                 padding: 0,
@@ -174,32 +139,17 @@ export default function DashboardPage() {
 
       {/* Main content */}
       <main style={{ flex: 1, padding: '2rem', maxWidth: '900px' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-start',
-            marginBottom: '2rem',
-          }}
-        >
+        <div className="flex justify-between" style={{ alignItems: 'flex-start', marginBottom: '2rem' }}>
           <div>
-            <h1 style={{ fontSize: '1.5rem', fontWeight: '700', margin: 0 }}>API Keys</h1>
-            <p style={{ color: '#8888aa', fontSize: '0.9rem', marginTop: '0.25rem' }}>
+            <h1 style={{ fontSize: '1.5rem', margin: 0 }}>API Keys</h1>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.25rem' }}>
               Manage your API keys and client secrets
             </p>
           </div>
           <button
             onClick={() => setShowModal(true)}
-            style={{
-              padding: '0.6rem 1.25rem',
-              background: 'linear-gradient(135deg, #10b981, #3b82f6)',
-              border: 'none',
-              borderRadius: '8px',
-              color: '#fff',
-              fontSize: '0.9rem',
-              fontWeight: '600',
-              cursor: 'pointer',
-            }}
+            className="btn btn-primary"
+            style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}
           >
             + Generate New Key
           </button>
@@ -221,17 +171,16 @@ export default function DashboardPage() {
         {/* Newly created key reveal */}
         {createdKey && (
           <div
+            className="card"
             style={{
-              background: '#0d1f1a',
-              border: '1px solid #10b981',
-              borderRadius: '10px',
-              padding: '1.25rem',
+              background: 'rgba(16, 185, 129, 0.08)',
+              border: '1px solid var(--success)',
               marginBottom: '1.5rem',
             }}
           >
             <p
               style={{
-                color: '#6ee7b7',
+                color: 'var(--brand-teal)',
                 fontWeight: '600',
                 margin: '0 0 0.75rem',
                 fontSize: '0.9rem',
@@ -256,95 +205,42 @@ export default function DashboardPage() {
         )}
 
         {/* Keys table */}
-        <div
-          style={{
-            background: '#111118',
-            border: '1px solid #222230',
-            borderRadius: '10px',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
           {keys.length === 0 ? (
             <div
               style={{
                 padding: '3rem',
                 textAlign: 'center',
-                color: '#555566',
+                color: 'var(--text-tertiary)',
                 fontSize: '0.9rem',
               }}
             >
               No API keys yet. Generate one to get started.
             </div>
           ) : (
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table>
               <thead>
-                <tr style={{ borderBottom: '1px solid #222230' }}>
+                <tr>
                   {['Name', 'Key', 'Created', 'Actions'].map((h) => (
-                    <th
-                      key={h}
-                      style={{
-                        padding: '0.75rem 1rem',
-                        textAlign: 'left',
-                        color: '#555566',
-                        fontSize: '0.75rem',
-                        fontWeight: '600',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                      }}
-                    >
-                      {h}
-                    </th>
+                    <th key={h}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {keys.map((k) => (
-                  <tr
-                    key={k.id}
-                    style={{ borderBottom: '1px solid #1a1a28' }}
-                  >
-                    <td style={{ padding: '0.85rem 1rem', fontSize: '0.9rem', fontWeight: '500' }}>
-                      {k.name}
+                  <tr key={k.id}>
+                    <td style={{ fontWeight: '500' }}>{k.name}</td>
+                    <td>
+                      <code>{k.key.slice(0, 18)}...</code>
                     </td>
-                    <td style={{ padding: '0.85rem 1rem' }}>
-                      <code
-                        style={{
-                          fontSize: '0.8rem',
-                          color: '#8888aa',
-                          background: '#0a0a0f',
-                          padding: '0.2rem 0.5rem',
-                          borderRadius: '4px',
-                        }}
-                      >
-                        {k.key.slice(0, 18)}...
-                      </code>
-                    </td>
-                    <td
-                      style={{
-                        padding: '0.85rem 1rem',
-                        color: '#555566',
-                        fontSize: '0.8rem',
-                      }}
-                    >
+                    <td style={{ color: 'var(--text-tertiary)', fontSize: '0.8rem' }}>
                       {new Date(k.createdAt).toLocaleDateString()}
                     </td>
-                    <td style={{ padding: '0.85rem 1rem' }}>
+                    <td>
                       <Form method="post">
                         <input type="hidden" name="intent" value="revoke" />
                         <input type="hidden" name="id" value={k.id} />
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          style={{
-                            background: 'none',
-                            border: '1px solid #ef4444',
-                            borderRadius: '6px',
-                            color: '#ef4444',
-                            fontSize: '0.8rem',
-                            padding: '0.25rem 0.75rem',
-                            cursor: 'pointer',
-                          }}
-                        >
+                        <button type="submit" disabled={isSubmitting} className="btn btn-danger" style={{ padding: '0.25rem 0.75rem', fontSize: '0.8rem' }}>
                           Revoke
                         </button>
                       </Form>
@@ -359,44 +255,20 @@ export default function DashboardPage() {
 
       {/* Create Key Modal */}
       {showModal && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(0,0,0,0.7)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 50,
-          }}
-          onClick={() => setShowModal(false)}
-        >
-          <div
-            style={{
-              background: '#111118',
-              border: '1px solid #222230',
-              borderRadius: '12px',
-              padding: '2rem',
-              width: '100%',
-              maxWidth: '440px',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.15rem' }}>Generate New API Key</h2>
-            <p style={{ color: '#8888aa', fontSize: '0.85rem', margin: '0 0 1.5rem' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: '0 0 1.5rem' }}>
               Give your key a memorable name (e.g. "Production App").
             </p>
 
-            <Form
-              method="post"
-              onSubmit={() => setShowModal(false)}
-            >
+            <Form method="post" onSubmit={() => setShowModal(false)}>
               <input type="hidden" name="intent" value="create" />
               <label
                 htmlFor="keyName"
                 style={{
                   display: 'block',
-                  color: '#ccccdd',
+                  color: 'var(--text-primary)',
                   fontSize: '0.85rem',
                   marginBottom: '0.4rem',
                 }}
@@ -410,49 +282,22 @@ export default function DashboardPage() {
                 placeholder="e.g. My App"
                 required
                 autoFocus
-                style={{
-                  width: '100%',
-                  padding: '0.7rem 1rem',
-                  background: '#0a0a0f',
-                  border: '1px solid #222230',
-                  borderRadius: '8px',
-                  color: '#fff',
-                  fontSize: '1rem',
-                  marginBottom: '1.25rem',
-                  boxSizing: 'border-box',
-                }}
+                style={{ marginBottom: '1.25rem' }}
               />
               <div style={{ display: 'flex', gap: '0.75rem' }}>
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  style={{
-                    flex: 1,
-                    padding: '0.7rem',
-                    background: 'none',
-                    border: '1px solid #222230',
-                    borderRadius: '8px',
-                    color: '#8888aa',
-                    cursor: 'pointer',
-                    fontSize: '0.9rem',
-                  }}
+                  className="btn btn-secondary"
+                  style={{ flex: 1, padding: '0.7rem' }}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  style={{
-                    flex: 1,
-                    padding: '0.7rem',
-                    background: 'linear-gradient(135deg, #10b981, #3b82f6)',
-                    border: 'none',
-                    borderRadius: '8px',
-                    color: '#fff',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    fontSize: '0.9rem',
-                  }}
+                  className="btn btn-primary"
+                  style={{ flex: 1, padding: '0.7rem' }}
                 >
                   Generate
                 </button>
@@ -467,15 +312,8 @@ export default function DashboardPage() {
 
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div
-      style={{
-        background: '#111118',
-        border: '1px solid #222230',
-        borderRadius: '10px',
-        padding: '1.25rem',
-      }}
-    >
-      <div style={{ color: '#555566', fontSize: '0.75rem', marginBottom: '0.4rem' }}>{label}</div>
+    <div className="card">
+      <div style={{ color: 'var(--text-tertiary)', fontSize: '0.75rem', marginBottom: '0.4rem' }}>{label}</div>
       <div style={{ fontSize: '1.75rem', fontWeight: '700' }}>{value}</div>
     </div>
   );
@@ -494,16 +332,16 @@ function KeyRevealRow({
 }) {
   return (
     <div style={{ marginBottom: '0.75rem' }}>
-      <div style={{ color: '#8888aa', fontSize: '0.75rem', marginBottom: '0.25rem' }}>{label}</div>
+      <div style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', marginBottom: '0.25rem' }}>{label}</div>
       <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
         <code
           style={{
             flex: 1,
-            background: '#0a0a0f',
+            background: 'var(--bg-primary)',
             padding: '0.5rem 0.75rem',
             borderRadius: '6px',
             fontSize: '0.8rem',
-            color: '#6ee7b7',
+            color: 'var(--brand-teal)',
             wordBreak: 'break-all',
           }}
         >
@@ -514,10 +352,10 @@ function KeyRevealRow({
           onClick={() => onCopy(value, label)}
           style={{
             padding: '0.4rem 0.75rem',
-            background: '#1a2a22',
-            border: '1px solid #10b981',
+            background: 'rgba(16, 185, 129, 0.1)',
+            border: '1px solid var(--success)',
             borderRadius: '6px',
-            color: '#6ee7b7',
+            color: 'var(--brand-teal)',
             fontSize: '0.75rem',
             cursor: 'pointer',
             whiteSpace: 'nowrap',

@@ -5,12 +5,13 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
+import themeStyles from './styles/theme.css?url';
 
 export function meta() {
   return [
     { title: 'HeySalad AI - Workflow Automation Platform' },
     { name: 'description', content: 'AI-powered workflow automation with multi-provider support. OpenClaw-ready.' },
-    { name: 'keywords', content: 'AI, automation, workflow, OpenAI, Anthropic, Claude, GPT, OpenClaw' },
+    { name: 'keywords', content: 'AI, automation, workflow, OpenAI, Anthropic, Claude, GPT, Gemini, OpenClaw' },
     { property: 'og:title', content: 'HeySalad AI' },
     { property: 'og:description', content: 'AI-powered workflow automation platform' },
     { property: 'og:type', content: 'website' },
@@ -20,8 +21,9 @@ export function meta() {
 
 export function links() {
   return [
-    { rel: 'icon', href: '/favicon.ico' },
+    { rel: 'icon', href: '/heysalad-icon.svg' },
     { rel: 'manifest', href: '/manifest.json' },
+    { rel: 'stylesheet', href: themeStyles },
   ];
 }
 
@@ -33,6 +35,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Initialize theme before page renders to prevent flash
+              (function() {
+                const stored = localStorage.getItem('theme');
+                const theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         {children}

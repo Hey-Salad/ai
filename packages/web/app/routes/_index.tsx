@@ -1,4 +1,5 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
+import { Navigation } from '~/components/Navigation';
 
 export const meta: MetaFunction = () => [
   { title: 'HeySalad AI – Multi-Provider AI Platform' },
@@ -49,152 +50,30 @@ const FEATURES = [
 
 export default function Index() {
   return (
-    <div
-      style={{
-        fontFamily: 'system-ui, -apple-system, sans-serif',
-        background: '#0a0a0f',
-        color: '#e0e0f0',
-        minHeight: '100vh',
-      }}
-    >
-      {/* Nav */}
-      <nav
-        style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 40,
-          background: 'rgba(10,10,15,0.9)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid #1a1a28',
-          padding: '0 2rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: '60px',
-        }}
-      >
-        <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span style={{ fontSize: '1.5rem' }}>🥗</span>
-          <span
-            style={{
-              fontSize: '1.1rem',
-              fontWeight: '800',
-              background: 'linear-gradient(135deg, #ED4C4C, #FF6B6B)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
-            HeySalad
-          </span>
-        </a>
-        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-          <a href="/api/v1" style={{ color: '#8888aa', textDecoration: 'none', fontSize: '0.9rem' }}>
-            API Docs
-          </a>
-          <a href="/models" style={{ color: '#8888aa', textDecoration: 'none', fontSize: '0.9rem' }}>
-            Models
-          </a>
-          <a
-            href="/auth/login"
-            style={{
-              padding: '0.45rem 1.1rem',
-              background: 'linear-gradient(135deg, #10b981, #3b82f6)',
-              borderRadius: '8px',
-              color: '#fff',
-              textDecoration: 'none',
-              fontSize: '0.9rem',
-              fontWeight: '600',
-            }}
-          >
-            Dashboard
-          </a>
-        </div>
-      </nav>
+    <div style={{ minHeight: '100vh' }}>
+      <Navigation />
 
       {/* Hero */}
-      <section
-        style={{
-          maxWidth: '900px',
-          margin: '0 auto',
-          padding: '6rem 2rem 4rem',
-          textAlign: 'center',
-        }}
-      >
-        <div
-          style={{
-            display: 'inline-block',
-            padding: '0.3rem 1rem',
-            background: 'rgba(110,231,183,0.1)',
-            border: '1px solid rgba(110,231,183,0.3)',
-            borderRadius: '999px',
-            color: '#6ee7b7',
-            fontSize: '0.8rem',
-            fontWeight: '600',
-            letterSpacing: '0.05em',
-            marginBottom: '1.5rem',
-          }}
-        >
+      <section className="container" style={{ padding: '6rem 2rem 4rem', textAlign: 'center' }}>
+        <div className="badge badge-success" style={{ marginBottom: '1.5rem' }}>
           NOW WITH GEMINI 3 EXTENDED THINKING
         </div>
-        <h1
-          style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-            fontWeight: '800',
-            lineHeight: '1.1',
-            margin: '0 0 1.5rem',
-          }}
-        >
+        <h1 style={{ margin: '0 0 1.5rem' }}>
           One API for{' '}
-          <span
-            style={{
-              background: 'linear-gradient(135deg, #6ee7b7, #3b82f6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
+          <span className="accent-gradient">
             every AI model
           </span>
         </h1>
-        <p
-          style={{
-            fontSize: '1.2rem',
-            color: '#8888aa',
-            maxWidth: '600px',
-            margin: '0 auto 2.5rem',
-            lineHeight: '1.7',
-          }}
-        >
+        <p style={{ fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 2.5rem', lineHeight: '1.7' }}>
           HeySalad AI gives you a single, unified API to access OpenAI, Anthropic,
           Gemini, Bedrock, and more — with intelligent routing, workflow automation,
           and edge-native performance.
         </p>
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a
-            href="/auth/login"
-            style={{
-              padding: '0.85rem 2rem',
-              background: 'linear-gradient(135deg, #10b981, #3b82f6)',
-              borderRadius: '10px',
-              color: '#fff',
-              textDecoration: 'none',
-              fontWeight: '700',
-              fontSize: '1rem',
-            }}
-          >
+          <a href="/auth/login" className="btn btn-primary">
             Get Started →
           </a>
-          <a
-            href="/api/v1"
-            style={{
-              padding: '0.85rem 2rem',
-              background: 'none',
-              border: '1px solid #222230',
-              borderRadius: '10px',
-              color: '#ccccdd',
-              textDecoration: 'none',
-              fontSize: '1rem',
-            }}
-          >
+          <a href="/api/v1" className="btn btn-secondary">
             View API Docs
           </a>
         </div>
@@ -203,8 +82,8 @@ export default function Index() {
       {/* Providers strip */}
       <section
         style={{
-          borderTop: '1px solid #1a1a28',
-          borderBottom: '1px solid #1a1a28',
+          borderTop: '1px solid var(--border)',
+          borderBottom: '1px solid var(--border)',
           padding: '1.25rem 2rem',
           display: 'flex',
           justifyContent: 'center',
@@ -212,36 +91,20 @@ export default function Index() {
           flexWrap: 'wrap',
         }}
       >
-        <span style={{ color: '#444455', fontSize: '0.8rem', alignSelf: 'center' }}>
+        <span style={{ color: 'var(--text-tertiary)', fontSize: '0.8rem', alignSelf: 'center' }}>
           SUPPORTED PROVIDERS
         </span>
         {PROVIDERS.map((p) => (
-          <span key={p} style={{ color: '#8888aa', fontSize: '0.9rem', fontWeight: '500' }}>
+          <span key={p} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: '500' }}>
             {p}
           </span>
         ))}
       </section>
 
       {/* Features */}
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '5rem 2rem' }}>
-        <h2
-          style={{
-            textAlign: 'center',
-            fontSize: '2rem',
-            fontWeight: '700',
-            marginBottom: '0.75rem',
-          }}
-        >
-          Everything you need
-        </h2>
-        <p
-          style={{
-            textAlign: 'center',
-            color: '#8888aa',
-            marginBottom: '3rem',
-            fontSize: '1rem',
-          }}
-        >
+      <section className="container" style={{ padding: '5rem 2rem' }}>
+        <h2 className="text-center mb-1">Everything you need</h2>
+        <p className="text-center mb-4" style={{ color: 'var(--text-secondary)' }}>
           Production-ready AI infrastructure, out of the box.
         </p>
         <div
@@ -252,20 +115,10 @@ export default function Index() {
           }}
         >
           {FEATURES.map(({ icon, title, desc }) => (
-            <div
-              key={title}
-              style={{
-                background: '#111118',
-                border: '1px solid #1a1a28',
-                borderRadius: '10px',
-                padding: '1.5rem',
-              }}
-            >
+            <div key={title} className="card">
               <div style={{ fontSize: '1.5rem', marginBottom: '0.75rem' }}>{icon}</div>
-              <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.5rem' }}>
-                {title}
-              </h3>
-              <p style={{ color: '#8888aa', fontSize: '0.875rem', lineHeight: '1.6', margin: 0 }}>
+              <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem' }}>{title}</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: '1.6', margin: 0 }}>
                 {desc}
               </p>
             </div>
@@ -274,83 +127,40 @@ export default function Index() {
       </section>
 
       {/* Gemini 3 callout */}
-      <section
-        style={{
-          maxWidth: '800px',
-          margin: '0 auto 5rem',
-          padding: '0 2rem',
-        }}
-      >
+      <section className="container" style={{ padding: '0 2rem 5rem' }}>
         <div
+          className="card"
           style={{
             background: 'linear-gradient(135deg, rgba(110,231,183,0.08), rgba(59,130,246,0.08))',
             border: '1px solid rgba(110,231,183,0.2)',
-            borderRadius: '16px',
-            padding: '2.5rem',
             textAlign: 'center',
+            maxWidth: '800px',
+            margin: '0 auto',
           }}
         >
-          <div style={{ fontSize: '0.75rem', color: '#6ee7b7', letterSpacing: '0.1em', marginBottom: '1rem' }}>
+          <div className="badge badge-success" style={{ marginBottom: '1rem' }}>
             FEATURED MODEL
           </div>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: '700', marginBottom: '0.75rem' }}>
+          <h2 style={{ marginBottom: '0.75rem' }}>
             Gemini 3.1 Pro with Extended Thinking
           </h2>
-          <p style={{ color: '#8888aa', fontSize: '0.95rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: '1.7' }}>
             Access Google's most advanced model via a single API call. Extended thinking lets
             Gemini 3.1 Pro reason step-by-step before producing an answer — ideal for math,
             code generation, and complex analysis.
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {['gemini-3.1-pro-preview', 'gemini-3-flash-preview', 'gemini-2.5-pro'].map((m) => (
-              <code
-                key={m}
-                style={{
-                  background: '#0a0a0f',
-                  border: '1px solid #222230',
-                  borderRadius: '6px',
-                  padding: '0.3rem 0.75rem',
-                  fontSize: '0.8rem',
-                  color: '#6ee7b7',
-                }}
-              >
-                {m}
-              </code>
+              <code key={m}>{m}</code>
             ))}
           </div>
         </div>
       </section>
 
       {/* Quick start */}
-      <section
-        style={{
-          maxWidth: '800px',
-          margin: '0 auto 5rem',
-          padding: '0 2rem',
-        }}
-      >
-        <h2
-          style={{
-            textAlign: 'center',
-            fontSize: '1.75rem',
-            fontWeight: '700',
-            marginBottom: '2rem',
-          }}
-        >
-          Quick Start
-        </h2>
-        <pre
-          style={{
-            background: '#111118',
-            border: '1px solid #1a1a28',
-            borderRadius: '10px',
-            padding: '1.5rem',
-            overflow: 'auto',
-            fontSize: '0.85rem',
-            lineHeight: '1.7',
-            color: '#ccccdd',
-          }}
-        >
+      <section className="container" style={{ padding: '0 2rem 5rem' }}>
+        <h2 className="text-center mb-4">Quick Start</h2>
+        <pre style={{ maxWidth: '800px', margin: '0 auto' }}>
           <code>{`npm install @heysalad/ai
 
 import { createClient } from '@heysalad/ai';
@@ -366,31 +176,12 @@ const response = await ai.chat({
       </section>
 
       {/* CTA */}
-      <section
-        style={{
-          textAlign: 'center',
-          padding: '5rem 2rem',
-          borderTop: '1px solid #1a1a28',
-        }}
-      >
-        <h2 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '1rem' }}>
-          Ready to build?
-        </h2>
-        <p style={{ color: '#8888aa', marginBottom: '2rem', fontSize: '1rem' }}>
+      <section className="text-center" style={{ padding: '5rem 2rem', borderTop: '1px solid var(--border)' }}>
+        <h2 className="mb-2">Ready to build?</h2>
+        <p className="mb-3" style={{ color: 'var(--text-secondary)' }}>
           Generate your API key and start in minutes.
         </p>
-        <a
-          href="/auth/login"
-          style={{
-            padding: '0.9rem 2.5rem',
-            background: 'linear-gradient(135deg, #10b981, #3b82f6)',
-            borderRadius: '10px',
-            color: '#fff',
-            textDecoration: 'none',
-            fontWeight: '700',
-            fontSize: '1rem',
-          }}
-        >
+        <a href="/auth/login" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem' }}>
           Open Dashboard →
         </a>
       </section>
@@ -398,29 +189,29 @@ const response = await ai.chat({
       {/* Footer */}
       <footer
         style={{
-          borderTop: '1px solid #1a1a28',
+          borderTop: '1px solid var(--border)',
           padding: '2rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1rem',
-          color: '#444455',
+          color: 'var(--text-tertiary)',
           fontSize: '0.85rem',
         }}
       >
         <span>© 2026 HeySalad AI · MIT License</span>
         <div style={{ display: 'flex', gap: '1.5rem' }}>
-          <a href="https://github.com/Hey-Salad/ai" style={{ color: '#555566', textDecoration: 'none' }}>
+          <a href="https://github.com/Hey-Salad/ai" style={{ color: 'var(--text-tertiary)', textDecoration: 'none' }}>
             GitHub
           </a>
-          <a href="https://www.npmjs.com/package/@heysalad/ai" style={{ color: '#555566', textDecoration: 'none' }}>
+          <a href="https://www.npmjs.com/package/@heysalad/ai" style={{ color: 'var(--text-tertiary)', textDecoration: 'none' }}>
             npm
           </a>
-          <a href="/api/v1" style={{ color: '#555566', textDecoration: 'none' }}>
+          <a href="/api/v1" style={{ color: 'var(--text-tertiary)', textDecoration: 'none' }}>
             API
           </a>
-          <a href="/models" style={{ color: '#555566', textDecoration: 'none' }}>
+          <a href="/models" style={{ color: 'var(--text-tertiary)', textDecoration: 'none' }}>
             Models
           </a>
         </div>
